@@ -14,19 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.example.controllers
+package uk.gov.hmrc.example.models
 
-import javax.inject.{Inject, Singleton}
-import play.api.mvc.{Action, AnyContent, ControllerComponents}
-import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
+import play.api.libs.json.Json
 
+case class Person(firstName: String, secondName: String, address: Address)
 
-@Singleton()
-class MicroserviceHelloWorld @Inject()(cc: ControllerComponents) extends BackendController(cc) {
+case class Address(
+                    line1   : String,
+                    line2   : String,
+                    postCode: String,
+                    town    : String
+                  )
 
-  def hello(): Action[AnyContent] = Action {
-    Ok("Hello world - public zone")
-  }
-
-  val test: String = "test"
+object Address {
+  implicit val format = Json.format[Address]
+}
+object Person {
+  implicit val format = Json.format[Person]
 }

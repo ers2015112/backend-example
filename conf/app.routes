@@ -1,3 +1,5 @@
 # microservice specific routes
 
 GET        /hello-world             uk.gov.hmrc.example.controllers.MicroserviceHelloWorld.hello
+
+POST       /add-person               uk.gov.hmrc.example.controllers.AddPersonController.insertPerson
